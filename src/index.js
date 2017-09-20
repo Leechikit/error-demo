@@ -76,67 +76,84 @@ import errorHandler from './js/errorHandler.js';
 //     try {
 //         // logMessage();
 //         throw new Error('can not find it1');
+//         return 1;
 //     } catch (error) {
 //         console.log(error.message);
-//         try {
-//             console.log('11')
-//             throw new Error('can not find it2');
-//         } catch (error) {
-//             console.log(error.message);
-//             throw new Error('can not find it3');
-//         } finally {
-//             throw new Error('can not find it4');
-//         }
+//         throw new Error('can not find it2');
+//         return 2;
+//         // try {
+//         //     console.log('11')
+//         //     throw new Error('can not find it2');
+//         // } catch (error) {
+//         //     console.log(error.message);
+//         //     throw new Error('can not find it3');
+//         // } finally {
+//         //     throw new Error('can not find it4');
+//         // }
 //     } finally {
-//         throw new Error('can not find it5');
+//         // throw new Error('can not find it5');
+//         return 3;
 //         console.log(123);
 //     }
 // }
 
-// test();
+// console.log(test());
 
-function funResult1({ result, success = '成功', fail = '失败' }) {
-    
-        // throw new TypeError('result undefined');
-        // setTimeout(()=>{throw new TypeError('result undefined');},0)
-    return new Promise((resolve, reject) => {
-        if(result == void 0) 
-            return reject(new TypeError('result undefined'));
-        if (result) {
-            try {
-                resolve(success);
-            } catch (error) {
-                reject(error);
-            }
-        } else {
-            console.log('ss')
-            reject(new MyError(fail));
-        }
-    });
-}
+// try {
+//     try {
+//         throw new Error('can not find it1');
+//     } finally {
+//         throw new Error('can not find it2');
+//     }
+// } catch (err) {
+//     console.log(err.message);
+// }
 
-function funResult2({ result = true, success = '成功', fail = '失败' }) {
-    if (result) {
-        console.log(success);
-    } else {
-        // throw new Error(fail);
-        return Promise.reject(new MyError(fail));
-    }
-}
+// function funcResult1({ result, success = '成功', fail = '失败' }) {
+//     return new Promise((resolve, reject) => {
+//         if (result == void 0)
+//             return reject(new TypeError('result undefined'));
+//         if (result) {
+//             try {
+//                 resolve(success);
+//             } catch (error) {
+//                 reject(error);
+//             }
+//         } else {
+//             reject(new MyError(fail));
+//             // throw new MyError(fail);
+//             // setTimeout(() => { throw new MyError(fail); }, 0)
+//         }
+//     });
+// }
 
-Promise.resolve()
-    .then(funResult1.bind(null, {
-        success: '成功1',
-        fail: '失败1'
-    })).then(funResult2.bind(null, {
-        result: true,
-        success: '成功2',
-        fail: '失败2'
-    })).then((result) => {
-        console.log(result);
-    }).catch((result) => {
-        errorHandler(result);
-    });
+// function funcResult2({ result = true, success = '成功', fail = '失败' }) {
+//     if (result) {
+//         console.log(success);
+//     } else {
+//         // throw new Error(fail);
+//         return Promise.reject(new MyError(fail));
+//     }
+// }
+
+
+// Promise.resolve()
+//     .then(funcResult1.bind(null, {
+//         result: false,
+//         success: '成功1',
+//         fail: '失败1'
+//     })).then(funcResult2.bind(null, {
+//         result: true,
+//         success: '成功2',
+//         fail: '失败2'
+//     })).then((result) => {
+//         console.log(result);
+//     }, (result) => {
+//         errorHandler(result);
+//     })
+// .catch((result) => {
+//     errorHandler(result);
+// });
 
 // Promise.all([funResult1.call(null, {
 //     success: '成功1',
@@ -152,3 +169,11 @@ Promise.resolve()
 // }).catch((result) => {
 //     errorHandler(result);
 // })
+
+// try {
+//     console.log('before throw error');
+//     throw new Error('throw error');
+//     console.log('after throw error');
+// } catch (err) {
+//     console.log(err.message);
+// }
