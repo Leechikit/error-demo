@@ -177,3 +177,15 @@ import errorHandler from './js/errorHandler.js';
 // } catch (err) {
 //     console.log(err.message);
 // }
+
+Promise.resolve()
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error('throw error'));
+            }, 0);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });
