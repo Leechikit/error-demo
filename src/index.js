@@ -2,8 +2,9 @@ import './html/index.html';
 import './sass/index.scss';
 import MyError from './js/myError.js';
 import errorHandler from './js/errorHandler.js';
+// import trycatch from './js/try-catch.js';
 
-// const TIMES = 100000;
+const TIMES = 100000;
 
 // console.time('test normal in');
 // let count = 0;
@@ -13,37 +14,37 @@ import errorHandler from './js/errorHandler.js';
 // console.log(count);
 // console.timeEnd('test normal in');
 
-// function logMessage() {
-//     let count = 0;
-//     for (let i = 0; i < TIMES; i++) {
-//         count += i;
-//     }
-//     console.log(count);
-// }
+function logMessage() {
+    let count = 0;
+    for (let i = 0; i < TIMES; i++) {
+        count += i;
+    }
+    // console.log(count);
+}
 
 // console.time('test normal out');
 // logMessage()
 // console.timeEnd('test normal out');
 
-// console.time('test try out');
-// try {
-//     logMessage();
-// } catch (error) {
+console.time('test try out');
+try {
+    logMessage();
+} catch (error) {
 
-// }
-// console.timeEnd('test try out');
+}
+console.timeEnd('test try out');
 
-// console.time('test try in');
-// try {
-//     let count = 0;
-//     for (let i = 0; i < TIMES; i++) {
-//         count += i;
-//     }
-//     console.log(count);
-// } catch (error) {
+console.time('test try in');
+try {
+    let count = 0;
+    for (let i = 0; i < TIMES; i++) {
+        count += i;
+    }
+    // console.log(count);
+} catch (error) {
 
-// }
-// console.timeEnd('test try in');
+}
+console.timeEnd('test try in');
 
 // console.time('test catch out');
 // try {
@@ -178,14 +179,30 @@ import errorHandler from './js/errorHandler.js';
 //     console.log(err.message);
 // }
 
-Promise.resolve()
-    .then(() => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                reject(new Error('throw error'));
-            }, 0);
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// Promise.resolve()
+//     .then(() => {
+//         return new Promise((resolve, reject) => {
+//             setTimeout(() => {
+//                 reject(new Error('throw error'));
+//             }, 0);
+//         });
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+
+// try {
+//     throw new MyError("sss");
+// } catch (error) {
+//     errorHandler(error);
+// }
+window.onerror = function (msg, url, line, col, err) {
+    errorHandler(err);
+}
+try {
+    setTimeout(() => {
+        throw new Error("sss")
+    }, 0)
+} catch (err) {
+    console.log(err)
+}

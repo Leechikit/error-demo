@@ -26,5 +26,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config tasks/webpack.dev.js"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4"
   }
 }
