@@ -14,37 +14,37 @@ const TIMES = 100000;
 // console.log(count);
 // console.timeEnd('test normal in');
 
-function logMessage() {
-    let count = 0;
-    for (let i = 0; i < TIMES; i++) {
-        count += i;
-    }
-    // console.log(count);
-}
+// function logMessage() {
+//     let count = 0;
+//     for (let i = 0; i < TIMES; i++) {
+//         count += i;
+//     }
+//     // console.log(count);
+// }
 
 // console.time('test normal out');
 // logMessage()
 // console.timeEnd('test normal out');
 
-console.time('test try out');
-try {
-    logMessage();
-} catch (error) {
+// console.time('test try out');
+// try {
+//     logMessage();
+// } catch (error) {
 
-}
-console.timeEnd('test try out');
+// }
+// console.timeEnd('test try out');
 
-console.time('test try in');
-try {
-    let count = 0;
-    for (let i = 0; i < TIMES; i++) {
-        count += i;
-    }
-    // console.log(count);
-} catch (error) {
+// console.time('test try in');
+// try {
+//     let count = 0;
+//     for (let i = 0; i < TIMES; i++) {
+//         count += i;
+//     }
+//     // console.log(count);
+// } catch (error) {
 
-}
-console.timeEnd('test try in');
+// }
+// console.timeEnd('test try in');
 
 // console.time('test catch out');
 // try {
@@ -199,10 +199,17 @@ console.timeEnd('test try in');
 window.onerror = function (msg, url, line, col, err) {
     errorHandler(err);
 }
-try {
-    setTimeout(() => {
-        throw new Error("sss")
-    }, 0)
-} catch (err) {
-    console.log(err)
-}
+// window.addEventListener('unhandledrejection', event =>
+// {
+//     console.log(event.reason); // 打印"Hello, Fundebug!"
+// });
+window.addEventListener('rejectionhandled', event =>
+{
+    console.log('rejection handled'); // 1秒后打印"rejection handled"
+});
+
+let p = Promise.reject(new Error("throw error"))
+
+setTimeout(()=>{
+    p.catch(e=>{console.log(e)});
+},1000);

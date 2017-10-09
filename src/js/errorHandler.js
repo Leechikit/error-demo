@@ -5,7 +5,6 @@ function errorHandler(error) {
         alert(error.message);
     } else {
         error.message += ` https://stackoverflow.com/questions?q=${encodeURI(error.message)}`
-        console.error(error);
     }
 }
 
